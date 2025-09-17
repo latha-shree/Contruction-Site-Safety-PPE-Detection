@@ -79,4 +79,6 @@ Cloud/Edge integration for real-time monitoring dashboards
 ![video](https://github.com/latha-shree/Contruction-Site-Safety-PPE-Detection/blob/main/video.png)
 ![video_result](https://github.com/latha-shree/Contruction-Site-Safety-PPE-Detection/blob/main/video_result1.png)
 ![video2](https://github.com/latha-shree/Contruction-Site-Safety-PPE-Detection/blob/main/video_result2.png)
+![real](https://github.com/latha-shree/Contruction-Site-Safety-PPE-Detection/blob/main/real.png)
+![real1](https://github.com/latha-shree/Contruction-Site-Safety-PPE-Detection/blob/main/real1.png)
 
