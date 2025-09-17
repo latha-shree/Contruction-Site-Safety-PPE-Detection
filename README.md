@@ -72,5 +72,5 @@ Extend support for additional PPE (e.g., goggles, masks)
 Cloud/Edge integration for real-time monitoring dashboards
 
 
-
+![homepage](https://github.com/latha-shree/Contruction-Site-Safety-PPE-Detection/blob/main/homepage.png)
 
