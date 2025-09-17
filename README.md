@@ -1,47 +1,47 @@
 👷 Construction Site Safety PPE Detection
 
-This project focuses on ensuring workplace safety by automatically detecting Personal Protective Equipment (PPE) such as helmets, safety vests, and gloves on construction sites using Artificial Intelligence and Computer Vision.
-
-The system leverages Deep Learning models (YOLOv4/YOLOv5) along with OpenCV to perform real-time object detection. A Tkinter-based GUI is also provided for easy interaction, supporting detection from images, video files, and live webcam feeds.
+An AI-based system for real-time monitoring of Personal Protective Equipment (PPE) such as helmets, vests, and gloves. The system uses YOLO object detection and OpenCV to identify violations from images, videos, and live camera feeds. It also provides Telegram alerts and voice warnings to ensure worker safety.
 
 🚀 Features
 
-Detects PPE items (Helmet, Vest, Gloves) in real-time
+📷 Image Detection – Upload images to detect PPE violations
 
-Supports detection from:
+🎥 Video Detection – Upload videos and process PPE compliance
 
-📷 Images
+📡 Real-time Camera Detection – Live monitoring with YOLO + OpenCV
 
-🎥 Video files
+📢 Alerts
 
-📡 Live webcam
+Telegram notifications to supervisors
 
-Tkinter GUI for a user-friendly interface
+Voice warnings for missing PPE items
 
-Provides visual feedback with bounding boxes around detected PPE
-
-Can be deployed on edge devices (Jetson Nano, Raspberry Pi) for on-site monitoring
+🔐 Admin Login – Secure dashboard access
 
 🛠️ Tech Stack
 
-Programming Language: Python
+Backend: Flask
 
-Deep Learning Models: YOLOv4, YOLOv5
+Model: YOLOv8 / YOLO (Ultralytics)
 
-Libraries & Tools: OpenCV, TensorFlow/Keras, NumPy, Pandas, Matplotlib, Tkinter
+Libraries: OpenCV, NumPy, Pandas, TensorFlow/Keras, pyttsx3
 
-Hardware Support: Jetson Nano / Raspberry Pi (for edge deployment)
+Notifications: Telegram Bot API
+
+Frontend: HTML, CSS, Bootstrap (templates)
 
 📂 Project Structure
 PPE-Detection/
-│── dataset/              # Training dataset
-│── yolo/                 # YOLO model config & weights
-│── gui.py                # Tkinter GUI for detection
-│── detect.py             # Script for image/video/webcam detection
-│── requirements.txt      # Dependencies
-│── README.md             # Documentation
+│── app.py               # Main Flask application
+│── detection.py         # Detection logic (YOLO + OpenCV)
+│── static/uploads/      # Uploaded images & videos
+│── static/processed/    # Processed detection outputs
+│── templates/           # HTML templates
+│── best.pt              # YOLO trained weights
+│── requirements.txt     # Project dependencies
+│── README.md            # Documentation
 
-⚙️ Installation & Requirements
+⚙️ Installation & Setup
 
 Clone the repository:
 
@@ -54,22 +54,28 @@ Install dependencies:
 pip install -r requirements.txt
 
 
-Run detection:
+Add your YOLO model weights (e.g., best.pt) inside the project folder.
 
-python detect.py
+Configure Telegram Bot (in app.py):
+
+Replace TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID with your credentials.
+
+Run the Flask app:
+
+python app.py
 
 
-Launch GUI:
+Open in browser:
 
-python gui.py
+http://127.0.0.1:5000/
 
 📌 Future Enhancements
 
-Improve detection accuracy using YOLOv8
+Add detection for more PPE items (goggles, masks, boots)
 
-Extend support for additional PPE (e.g., goggles, masks)
+Cloud/Edge deployment (Jetson Nano, Raspberry Pi)
 
-Cloud/Edge integration for real-time monitoring dashboards
+Centralized dashboard for multiple cameras
 
 
 ![homepage](https://github.com/latha-shree/Contruction-Site-Safety-PPE-Detection/blob/main/homepage.png)
