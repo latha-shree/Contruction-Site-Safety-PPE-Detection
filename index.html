@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPE Vision Pro | Industrial Safety Monitoring</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glass-blur: 16px;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --primary: #005b96;
+            --secondary: #03396c;
+            --accent: #ff7d00;
+            --text-light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            color: var(--text-light);
+            overflow-x: hidden;
+            padding-top: 70px;
+        }
+        
+        /* Professional Navbar */
+        .navbar {
+            background: rgba(3, 57, 108, 0.95);
+            border-bottom: 1px solid rgba(255, 125, 0, 0.2);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: white !important;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-right: 12px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            padding: 8px 16px !important;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: white !important;
+            background: rgba(255, 125, 0, 0.2);
+        }
+        
+        .navbar-toggler {
+            border: none;
+            color: white !important;
+            padding: 0.5rem;
+        }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-section {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-logo {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero-title-logo {
+            width: 50px;
+            height: 50px;
+            margin: 0 15px;
+            display: inline-flex;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-desc {
+            opacity: 0.8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: #03396c;
+            border: none;
+            padding: 0.9rem 2.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #ff8c00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 125, 0, 0.3);
+            color: #03396c;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(3, 57, 108, 0.5);
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin-top: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content {
+                padding: 3rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.05rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            
+            .hero-title-logo {
+                width: 40px;
+                height: 40px;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M60 10L10 50V90L60 110L110 90V50L60 10Z" fill="#ff7d00"/>
+                            <circle cx="60" cy="60" r="35" fill="white"/>
+                            <circle cx="60" cy="60" r="25" fill="#03396c"/>
+                            <circle cx="60" cy="60" r="10" fill="#ff7d00"/>
+                            <rect x="10" y="55" width="100" height="5" fill="#ff7d00">
+                                <animate attributeName="y" values="45;75;45" dur="2s" repeatCount="indefinite"/>
+                            </rect>
+                        </svg>
+                    </div>
+                </div>
+                <span>PPE VISION PRO</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Technology</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Compliance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Industries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <div class="glass-card hero-content">
+                <div class="hero-logo">
+                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M60 10L10 50V90L60 110L110 90V50L60 10Z" fill="#ff7d00"/>
+                        <circle cx="60" cy="60" r="35" fill="white"/>
+                        <circle cx="60" cy="60" r="25" fill="#03396c"/>
+                        <circle cx="60" cy="60" r="10" fill="#ff7d00"/>
+                        <rect x="10" y="55" width="100" height="5" fill="#ff7d00">
+                            <animate attributeName="y" values="45;75;45" dur="2s" repeatCount="indefinite"/>
+                        </rect>
+                    </svg>
+                </div>
+                
+                <h1 class="hero-title">
+                    Advanced
+                    <span class="hero-title-logo">
+                        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M60 10L10 50V90L60 110L110 90V50L60 10Z" fill="#ff7d00"/>
+                            <circle cx="60" cy="60" r="35" fill="white"/>
+                            <circle cx="60" cy="60" r="25" fill="#03396c"/>
+                            <circle cx="60" cy="60" r="10" fill="#ff7d00"/>
+                        </svg>
+                    </span>
+                    PPE Detection System
+                </h1>
+                
+                <p class="hero-subtitle">
+                    AI-powered vision technology for real-time monitoring of personal protective equipment compliance in industrial environments
+                </p>
+                
+                <div class="features-grid">
+                    <div class="glass-card feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-helmet-safety"></i>
+                        </div>
+                        <h3 class="feature-title">Head Protection</h3>
+                        <p class="feature-desc">Detect hard hats and other required headgear with 99.7% accuracy</p>
+                    </div>
+                    
+                    <div class="glass-card feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-vest"></i>
+                        </div>
+                        <h3 class="feature-title">Body Protection</h3>
+                        <p class="feature-desc">Identify missing safety vests and other body protection gear</p>
+                    </div>
+                    
+                    <div class="glass-card feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mask-face"></i>
+                        </div>
+                        <h3 class="feature-title">Respiratory Safety</h3>
+                        <p class="feature-desc">Monitor proper use of masks and respirators in designated zones</p>
+                    </div>
+                </div>
+                
+                <a href="/login" class="btn btn-primary mt-3">
+                    <i class="fas fa-sign-in-alt"></i> Login to System
+                </a>
+                
+                <div class="glass-card stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-number">99.7%</div>
+                        <div class="stat-label">Detection Accuracy</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500ms</div>
+                        <div class="stat-label">Alert Response</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Operation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 10) {
+                navbar.style.background = 'rgba(3, 57, 108, 0.98)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+            } else {
+                navbar.style.background = 'rgba(3, 57, 108, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

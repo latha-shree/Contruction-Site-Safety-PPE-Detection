@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - PPE Vision Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glass-blur: 16px;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --primary: #005b96;
+            --secondary: #03396c;
+            --accent: #ff7d00;
+            --text-light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            color: var(--text-light);
+            overflow-x: hidden;
+            padding-top: 70px;
+        }
+        
+        /* Professional Navbar */
+        .navbar {
+            background: rgba(3, 57, 108, 0.95);
+            border-bottom: 1px solid rgba(255, 125, 0, 0.2);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: white !important;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-right: 12px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            padding: 8px 16px !important;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: white !important;
+            background: rgba(255, 125, 0, 0.2);
+        }
+        
+        .navbar-toggler {
+            border: none;
+            color: white !important;
+            padding: 0.5rem;
+        }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .dashboard-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .dashboard-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 15px;
+        }
+        
+        .dashboard-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .option-card {
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none !important;
+            color: inherit !important;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .option-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .option-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .option-desc {
+            opacity: 0.8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .btn-logout {
+            background: rgba(255, 125, 0, 0.2);
+            color: var(--accent);
+            border: none;
+            padding: 0.9rem 2.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+        
+        .btn-logout:hover {
+            background: rgba(255, 125, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 125, 0, 0.2);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-title {
+                font-size: 2rem;
+                flex-direction: column;
+            }
+            
+            .dashboard-logo {
+                margin: 10px 0;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M60 10L10 50V90L60 110L110 90V50L60 10Z" fill="#ff7d00"/>
+                            <circle cx="60" cy="60" r="35" fill="white"/>
+                            <circle cx="60" cy="60" r="25" fill="#03396c"/>
+                            <circle cx="60" cy="60" r="10" fill="#ff7d00"/>
+                            <rect x="10" y="55" width="100" height="5" fill="#ff7d00">
+                                <animate attributeName="y" values="45;75;45" dur="2s" repeatCount="indefinite"/>
+                            </rect>
+                        </svg>
+                    </div>
+                </div>
+                <span>PPE VISION PRO</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Admin Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="glass-card dashboard-header">
+            <h1 class="dashboard-title">
+                <svg class="dashboard-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60 10L10 50V90L60 110L110 90V50L60 10Z" fill="#ff7d00"/>
+                    <circle cx="60" cy="60" r="35" fill="white"/>
+                    <circle cx="60" cy="60" r="25" fill="#03396c"/>
+                    <circle cx="60" cy="60" r="10" fill="#ff7d00"/>
+                </svg>
+                Admin Dashboard
+            </h1>
+            <p class="dashboard-subtitle">
+                Manage your PPE detection system with these powerful tools
+            </p>
+        </div>
+        
+        <div class="options-grid">
+            <a href="/image-detect" class="glass-card option-card">
+                <div class="option-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3 class="option-title">Image Detection</h3>
+                <p class="option-desc">Upload and analyze single images for PPE compliance verification</p>
+            </a>
+            
+            <a href="/video-detect" class="glass-card option-card">
+                <div class="option-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3 class="option-title">Video Detection</h3>
+                <p class="option-desc">Process recorded video footage to detect PPE usage patterns</p>
+            </a>
+            
+            <a href="/camera-detect" class="glass-card option-card">
+                <div class="option-icon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <h3 class="option-title">Real-Time Detection</h3>
+                <p class="option-desc">Monitor live camera feeds for instant PPE compliance alerts</p>
+            </a>
+        </div>
+        
+        <div class="text-center">
+            <a href="/logout" class="btn btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 10) {
+                navbar.style.background = 'rgba(3, 57, 108, 0.98)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+            } else {
+                navbar.style.background = 'rgba(3, 57, 108, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
